@@ -1,0 +1,68 @@
+{
+  "subject": "MazeAI",
+  "columns": [
+    {
+      "key": "movement",
+      "full_name": "Direction",
+      "type": "numeric",
+      "is_objective": true,
+      "goal": "min",
+      "format": "number:0 | taPrefix:'D'",
+      "description": "Direction in Degrees"
+    }
+  ],
+  "options": [
+    {
+      "key": 200727569,
+      "name": "Acura ILX",
+      "description": "Technology Plus Package 4dr Sedan (2.4L 4cyl 8AM)",
+      "values": {
+        "price": 32900,
+        "engineSize": 2.4,
+        "power": 201,
+        "MPGCombined": 30,
+        "averageRating": 4.05,
+        "reviewsCount": 15
+      }
+    },
+    {
+      "key": 200726801,
+      "name": "Acura MDX",
+      "description": "4dr SUV (3.5L 6cyl 9A)",
+      "values": {
+        "price": 43015,
+        "engineSize": 3.5,
+        "power": 290,
+        "MPGCombined": 23,
+        "averageRating": 3.791,
+        "reviewsCount": 37
+      }
+    },
+    {
+      "key": 200732587,
+      "name": "Acura RDX",
+      "description": "AcuraWatch Plus Package 4dr SUV AWD (3.5L 6cyl 6A)",
+      "values": {
+        "price": 38170,
+        "engineSize": 3.5,
+        "power": 279,
+        "MPGCombined": 23,
+        "averageRating": 4.31,
+        "reviewsCount": 29
+      }
+    },
+    {
+      "key": 200729234,
+      "name": "Acura RLX",
+      "description": "Advance Package 4dr Sedan (3.5L 6cyl 6A)",
+      "values": {
+        "price": 60450,
+        "engineSize": 3.5,
+        "power": 310,
+        "MPGCombined": 25,
+        "averageRating": 5,
+        "reviewsCount": 1
+      }
+    }
+  ]
+}

@@ -1,0 +1,16 @@
+{
+    "m_ClassifierDirectory": "Watson/Scripts/Editor/Classifiers/",
+    "m_TimeOut": 30.0,
+    "m_MaxRestConnections": 5,
+    "m_Credentials": [
+        {
+            "m_ServiceID": "TradeoffAnalyticsV1",
+            "m_URL": "https://gateway.watsonplatform.net/tradeoff-analytics/api",
+            "m_User": "3a0cadaf-fd9a-409d-a1c8-2732953bd3af",
+            "m_Password": "3iq0Qn2iDdzc",
+            "m_Apikey": null,
+            "m_Note": null
+        }
+    ],
+    "m_Variables": []
+}

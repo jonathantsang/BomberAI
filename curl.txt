@@ -1,0 +1,1 @@
+curl -i -u "d032f503-21c7-47d6-a434-f034e0721165":"tLoewKn6e1aJ" -F training_data=@weather_data_train.csv -F training_metadata="{\"language\":\"en\",\"name\":\"TutorialClassifier\"}" "https://gateway.watsonplatform.net/natural-language-classifier/api/v1/classifiers"

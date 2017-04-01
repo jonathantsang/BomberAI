@@ -1,0 +1,47 @@
+{
+  "subject": "MazeAI",
+  "columns": [
+    {
+      "key": "movement",
+      "full_name": "Direction",
+      "type": "numeric",
+      "is_objective": true,
+      "goal": "min",
+      "description": "Direction in Degrees"
+    }
+  ],
+  "options": [
+    {
+      "key": "right",
+      "name": "right",
+      "description": "move right",
+      "values": {
+        "movement": 0
+      }
+    },
+    {
+      "key": "up",
+      "name": "up",
+      "description": "move up",
+      "values": {
+        "movement": 90
+      }
+    },
+    {
+      "key": "left",
+      "name": "left",
+      "description": "move left",
+      "values": {
+        "movement": 180
+      }
+    },
+    {
+      "key": "down",
+      "name": "down",
+      "description": "move down",
+      "values": {
+        "movement": 270
+      }
+    }
+  ]
+}
