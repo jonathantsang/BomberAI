@@ -8,6 +8,22 @@
       "is_objective": true,
       "goal": "min",
       "description": "Direction in Degrees"
+    },
+    {
+      "key": "distanceXFromPlayer",
+      "full_name": "Direction",
+      "type": "numeric",
+      "is_objective": true,
+      "goal": "min",
+      "description": "Horizontal distance from the player"
+    },
+    {
+      "key": "distanceYFromPlayer",
+      "full_name": "Direction",
+      "type": "numeric",
+      "is_objective": true,
+      "goal": "min",
+      "description": "Horizontal distance from the player"
     }
   ],
   "options": [
@@ -16,7 +32,9 @@
       "name": "right",
       "description": "move right",
       "values": {
-        "movement": 0
+        "movement": 0,
+        "distanceXFromPlayer": 1,
+        "distanceYFromPlayer": 0
       }
     },
     {
@@ -24,7 +42,9 @@
       "name": "up",
       "description": "move up",
       "values": {
-        "movement": 90
+        "movement": 90,
+        "distanceXFromPlayer": 0,
+        "distanceYFromPlayer": 1
       }
     },
     {
@@ -32,7 +52,9 @@
       "name": "left",
       "description": "move left",
       "values": {
-        "movement": 180
+        "movement": 180,
+        "distanceXFromPlayer": -1,
+        "distanceYFromPlayer": 0
       }
     },
     {
@@ -40,7 +62,9 @@
       "name": "down",
       "description": "move down",
       "values": {
-        "movement": 270
+        "movement": 270,
+        "distanceXFromPlayer": 0,
+        "distanceYFromPlayer": -1
       }
     }
   ]

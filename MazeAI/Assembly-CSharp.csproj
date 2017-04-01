@@ -47,6 +47,8 @@
   </ItemGroup>
   <ItemGroup>
      <Compile Include="Assets\Scripts\GETTradeoffAnalysis.cs" />
+     <Compile Include="Assets\Scripts\solutions.cs" />
+     <Compile Include="Assets\Scripts\watsonAICalculate.cs" />
      <Compile Include="Assets\Watson\Examples\ServiceExamples\Scripts\ExampleAlchemyDataNews.cs" />
      <Compile Include="Assets\Watson\Examples\ServiceExamples\Scripts\ExampleAlchemyLanguage.cs" />
      <Compile Include="Assets\Watson\Examples\ServiceExamples\Scripts\ExampleConversation.cs" />
@@ -405,10 +407,6 @@
  <Reference Include="HtmlAgilityPack">
  <HintPath>/Users/Jon/GitHub/MazeAI/MazeAI/Assets/Watson/ThirdParty/HtmlAgilityPack/HtmlAgilityPack.dll</HintPath>
  </Reference>
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="Assembly-CSharp-firstpass.csproj">
-      <Project>{6FE6F637-F321-AC74-ED5F-957F2A7ED5DE}</Project>      <Name>Assembly-CSharp-firstpass</Name>    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

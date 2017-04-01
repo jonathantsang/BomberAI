@@ -33,6 +33,8 @@ public class GETTradeoffAnalysis : MonoBehaviour {
 		if (www.error == null)
 		{	
 			Debug.Log("WWW Ok!: " + www.text);
+			solutions Soln = JsonUtility.FromJson<solutions> (www.text);
+			Debug.Log (Soln);
 		} else {
 			Debug.Log("WWW Error: "+ www.error);
 		}    

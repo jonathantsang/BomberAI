@@ -64,7 +64,7 @@ public class ExampleTradeoffAnalytics : MonoBehaviour
 
     listColumn.Add(columnPrice);
     listColumn.Add(columnWeight);
-    //            listColumn.Add(columnBrandName);
+    //listColumn.Add(columnBrandName);
 
     problemToSolve.columns = listColumn.ToArray();
 
@@ -75,27 +75,27 @@ public class ExampleTradeoffAnalytics : MonoBehaviour
     option1.key = "1";
     option1.name = "Samsung Galaxy S4";
     option1.values = new TestDataValue();
-    (option1.values as TestDataValue).weight = 130;
+    (option1.values as TestDataValue).weight = 112;
     (option1.values as TestDataValue).brand = "Samsung";
-    (option1.values as TestDataValue).price = 249;
+    (option1.values as TestDataValue).price = 559;
     listOption.Add(option1);
 
     Option option2 = new Option();
     option2.key = "2";
     option2.name = "Apple iPhone 5";
     option2.values = new TestDataValue();
-    (option2.values as TestDataValue).weight = 112;
+    (option2.values as TestDataValue).weight = 122;
     (option2.values as TestDataValue).brand = "Apple";
-    (option2.values as TestDataValue).price = 599;
+    (option2.values as TestDataValue).price = 899;
     listOption.Add(option2);
 
     Option option3 = new Option();
     option3.key = "3";
     option3.name = "HTC One";
     option3.values = new TestDataValue();
-    (option3.values as TestDataValue).weight = 143;
+    (option3.values as TestDataValue).weight = 202;
     (option3.values as TestDataValue).brand = "HTC";
-    (option3.values as TestDataValue).price = 299;
+    (option3.values as TestDataValue).price = 799;
     listOption.Add(option3);
 
     problemToSolve.options = listOption.ToArray();

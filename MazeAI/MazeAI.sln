@@ -1,8 +1,6 @@
 Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual Studio 2008
 
-Project("{47383B52-B4E6-08AC-5294-AE16E4E0D8CF}") = "MazeAI", "Assembly-CSharp-firstpass.csproj", "{6FE6F637-F321-AC74-ED5F-957F2A7ED5DE}"
-EndProject
 Project("{47383B52-B4E6-08AC-5294-AE16E4E0D8CF}") = "MazeAI", "Assembly-CSharp.csproj", "{774F8F98-9B76-AA59-EB42-A7A46E833ED8}"
 EndProject
 Project("{47383B52-B4E6-08AC-5294-AE16E4E0D8CF}") = "MazeAI", "Assembly-CSharp-Editor.csproj", "{EA176111-3981-C5A5-5352-99A1789E24F2}"
@@ -13,10 +11,6 @@ Global
 		Release|Any CPU = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(ProjectConfigurationPlatforms) = postSolution
-		{6FE6F637-F321-AC74-ED5F-957F2A7ED5DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{6FE6F637-F321-AC74-ED5F-957F2A7ED5DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{6FE6F637-F321-AC74-ED5F-957F2A7ED5DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{6FE6F637-F321-AC74-ED5F-957F2A7ED5DE}.Release|Any CPU.Build.0 = Release|Any CPU
 		{774F8F98-9B76-AA59-EB42-A7A46E833ED8}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{774F8F98-9B76-AA59-EB42-A7A46E833ED8}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{774F8F98-9B76-AA59-EB42-A7A46E833ED8}.Release|Any CPU.ActiveCfg = Release|Any CPU
