@@ -10,6 +10,8 @@ public class watsonAICalculate : MonoBehaviour {
 	private float timeElapsed = 0f;
 	private float timeDuration = 2f;
 
+	public float maxSpeed = 2.3f;
+
 	// The AI has 6 main options, 4 directions, place a bomb, or do nothing
 	private int numOptions = 6;
 
@@ -19,6 +21,7 @@ public class watsonAICalculate : MonoBehaviour {
 
 	[Header("AI")]
 	public GameObject AI;
+	public GameObject player;
 	private Problem problemToSolve = new Problem();
 	private List<Option> listOption;
 
@@ -36,7 +39,7 @@ public class watsonAICalculate : MonoBehaviour {
 
 		List<Column> listColumn = new List<Column>();
 		Column columnMovement = new Column();
-		columnMovement.description = "Movement";
+		columnMovement.description = "Direction to move";
 		columnMovement.range = new ValueRange();
 		((ValueRange)columnMovement.range).high = 270;
 		((ValueRange)columnMovement.range).low = 0;
@@ -65,7 +68,7 @@ public class watsonAICalculate : MonoBehaviour {
 		columnDanger.range = new ValueRange();
 		// Want to get close to player, but not too close
 		((ValueRange)columnDanger.range).high = 999;
-		((ValueRange)columnDanger.range).low = 3;
+		((ValueRange)columnDanger.range).low = -3;
 		columnDanger.type = "numeric";
 		columnDanger.key = "distanceX";
 		columnDanger.full_name = "Distance Horizontal";
@@ -78,7 +81,7 @@ public class watsonAICalculate : MonoBehaviour {
 		columnDanger.range = new ValueRange();
 		// Want to get close to player, but not too close
 		((ValueRange)columnDanger.range).high = 999;
-		((ValueRange)columnDanger.range).low = 3;
+		((ValueRange)columnDanger.range).low = -3;
 		columnDistanceY.type = "numeric";
 		columnDistanceY.key = "distanceX";
 		columnDistanceY.full_name = "Distance Horizontal";
@@ -127,9 +130,9 @@ public class watsonAICalculate : MonoBehaviour {
 		option2.name = "up";
 		option2.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option1.values as TestDataValue).distanceX = 0;
-		(option1.values as TestDataValue).distanceY = 0;
-		(option1.values as TestDataValue).danger = 0;
+		(option2.values as TestDataValue).distanceX = 0;
+		(option2.values as TestDataValue).distanceY = 0;
+		(option2.values as TestDataValue).danger = 0;
 
 		(option2.values as TestDataValue).action = "move";
 		(option2.values as TestDataValue).direction = 90;
@@ -140,9 +143,9 @@ public class watsonAICalculate : MonoBehaviour {
 		option3.name = "left";
 		option3.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option1.values as TestDataValue).distanceX = 0;
-		(option1.values as TestDataValue).distanceY = 0;
-		(option1.values as TestDataValue).danger = 0;
+		(option3.values as TestDataValue).distanceX = 0;
+		(option3.values as TestDataValue).distanceY = 0;
+		(option3.values as TestDataValue).danger = 0;
 
 		(option3.values as TestDataValue).action = "move";
 		(option3.values as TestDataValue).direction = 180;
@@ -153,9 +156,9 @@ public class watsonAICalculate : MonoBehaviour {
 		option4.name = "down";
 		option4.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option1.values as TestDataValue).distanceX = 0;
-		(option1.values as TestDataValue).distanceY = 0;
-		(option1.values as TestDataValue).danger = 0;
+		(option4.values as TestDataValue).distanceX = 0;
+		(option4.values as TestDataValue).distanceY = 0;
+		(option4.values as TestDataValue).danger = 0;
 
 		(option4.values as TestDataValue).action = "move";
 		(option4.values as TestDataValue).direction = 270;
@@ -166,9 +169,9 @@ public class watsonAICalculate : MonoBehaviour {
 		option5.name = "placebomb";
 		option5.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option1.values as TestDataValue).distanceX = 0;
-		(option1.values as TestDataValue).distanceY = 0;
-		(option1.values as TestDataValue).danger = 0;
+		(option5.values as TestDataValue).distanceX = 0;
+		(option5.values as TestDataValue).distanceY = 0;
+		(option5.values as TestDataValue).danger = 0;
 
 		(option5.values as TestDataValue).action = "bomb";
 		// Technically no direction
@@ -180,9 +183,9 @@ public class watsonAICalculate : MonoBehaviour {
 		option6.name = "waiting";
 		option6.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option1.values as TestDataValue).distanceX = 0;
-		(option1.values as TestDataValue).distanceY = 0;
-		(option1.values as TestDataValue).danger = 0;
+		(option6.values as TestDataValue).distanceX = 0;
+		(option6.values as TestDataValue).distanceY = 0;
+		(option6.values as TestDataValue).danger = 0;
 
 		(option6.values as TestDataValue).action = "nomove";
 		// Technically no direction
@@ -194,7 +197,6 @@ public class watsonAICalculate : MonoBehaviour {
 
 	private void OnGetDilemma( DilemmasResponse resp )
 	{
-		Debug.Log(resp == null);
 		Debug.Log("Response: " + resp);
 		// iterates in reverse order to have priority for moving over not moving. Workaround for categorical data not working.
 		for (int i = numOptions -1; i > -1; i--){
@@ -215,18 +217,39 @@ public class watsonAICalculate : MonoBehaviour {
 		// Testing of getting the values from the testdatavalue of each option
 		// Edit in the future based on player movement
 
-		// Left
-		(problemToSolve.options [0].values as TestDataValue).distanceX = 91;
+		Transform currTransform = gameObject.transform;
 
-		// Up
-		//(problemToSolve.options [1].values as TestDataValue).distanceX = 91;
+		// right
+		if(canMove(Vector2.right)){
+			(problemToSolve.options [0].values as TestDataValue).distanceX = currTransform.x + Vector2.right - player.transform.position;
+			(problemToSolve.options [0].values as TestDataValue).distanceY = currTransform.y - player.transform.position;
+		}
 
-		// Right
-		//(problemToSolve.options [2].values as TestDataValue).distanceX = 91;
+		// up
+		if(canMove(Vector2.up)){
+			(problemToSolve.options [1].values as TestDataValue).distanceX = currTransform.x + Vector2.right - player.transform.position;
+			(problemToSolve.options [1].values as TestDataValue).distanceY = currTransform.y - player.transform.position;
+		}
 
-		// Down
-		// (problemToSolve.options [3].values as TestDataValue).distanceX = 91;
-		// Bomb
+		// left
+		if(canMove(Vector2.left)){
+			(problemToSolve.options [2].values as TestDataValue).distanceX = currTransform.x + Vector2.right - player.transform.position;
+			(problemToSolve.options [2].values as TestDataValue).distanceY = currTransform.y - player.transform.position;
+		}
+
+		// down
+		if(canMove(Vector2.down)){
+			(problemToSolve.options [3].values as TestDataValue).distanceX = currTransform.x + Vector2.right - player.transform.position;
+			(problemToSolve.options [3].values as TestDataValue).distanceY = currTransform.y - player.transform.position;
+		}
+	}
+
+	private bool canMove(Vector2 dirVector){
+		RaycastHit2D hit = Physics2D.Raycast (transform.position, dirVector);
+		if (hit.collider != null) {
+			return false;
+		}
+		return true;
 	}
 
 	// Update is called once per frame
@@ -238,7 +261,7 @@ public class watsonAICalculate : MonoBehaviour {
 			// Right now makes a fresh new problem at the time of running, meaning no past saved state/memory
 			calculateMovement ();
 			editProblem ();
-			callWatsonAPI ();
+			callWatsonAPI();
 
 			timeElapsed = 0f;
 			int movex = 0;
@@ -260,7 +283,7 @@ public class watsonAICalculate : MonoBehaviour {
 				Debug.Log ("wait");
 			}
 
-			rb2d.position = new Vector2 (rb2d.position.x + movex, rb2d.position.y + movey);
+			rb2d.velocity = new Vector2 (movex * maxSpeed, movey * maxSpeed);
 		}
 	}
 

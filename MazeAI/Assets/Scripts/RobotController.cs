@@ -34,7 +34,7 @@ public class RobotController : MonoBehaviour {
 		}
 		float moveY = Input.GetAxis ("Vertical");//Gives us of one if we are moving via the arrow keys
 		//move our Players rigidbody
-		GetComponent<Rigidbody2D>().velocity = new Vector3 (moveX * maxSpeed, moveY * maxSpeed);
+		GetComponent<Rigidbody2D>().velocity = new Vector2 (moveX * maxSpeed, moveY * maxSpeed);
 		//set our speed
 		anim.SetFloat ("Speed",Mathf.Sqrt (Mathf.Abs (moveX) * Mathf.Abs (moveX) + Mathf.Abs (moveY) * Mathf.Abs(moveY)));
 
