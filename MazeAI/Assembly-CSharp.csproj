@@ -46,7 +46,10 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\Bomb.cs" />
+     <Compile Include="Assets\Scripts\Destroyer.cs" />
      <Compile Include="Assets\Scripts\GETTradeoffAnalysis.cs" />
+     <Compile Include="Assets\Scripts\RobotController.cs" />
      <Compile Include="Assets\Scripts\solutions.cs" />
      <Compile Include="Assets\Scripts\watsonAICalculate.cs" />
      <Compile Include="Assets\Watson\Examples\ServiceExamples\Scripts\ExampleAlchemyDataNews.cs" />
@@ -380,6 +383,9 @@
      <None Include="Assets\Watson\ThirdParty\TouchScript\Shaders\DebugMultiplyNoDepthTest.shader" />
      <None Include="Assets\Watson\Examples\ServiceExamples\TestData\test-stt-corpus.txt" />
      <None Include="Assets\Watson\ThirdParty\WebSocketSharp\LICENSE.txt" />
+ <Reference Include="UnityEngine.Advertisements">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/Advertisements/UnityEngine.Advertisements.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.UI">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>
@@ -395,17 +401,20 @@
  <Reference Include="UnityEngine.HoloLens">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityHoloLens/RuntimeEditor/UnityEngine.HoloLens.dll</HintPath>
  </Reference>
+ <Reference Include="UnityEngine.Purchasing">
+ <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityPurchasing/UnityEngine.Purchasing.dll</HintPath>
+ </Reference>
  <Reference Include="UnityEngine.VR">
  <HintPath>/Applications/Unity/Unity.app/Contents/UnityExtensions/Unity/UnityVR/RuntimeEditor/UnityEngine.VR.dll</HintPath>
+ </Reference>
+ <Reference Include="HtmlAgilityPack">
+ <HintPath>/Users/Jon/GitHub/MazeAI/MazeAI/Assets/Watson/ThirdParty/HtmlAgilityPack/HtmlAgilityPack.dll</HintPath>
  </Reference>
  <Reference Include="OSCsharp">
  <HintPath>/Users/Jon/GitHub/MazeAI/MazeAI/Assets/Watson/ThirdParty/TouchScript/Modules/TUIO/Libraries/OSCsharp.dll</HintPath>
  </Reference>
  <Reference Include="TUIOsharp">
  <HintPath>/Users/Jon/GitHub/MazeAI/MazeAI/Assets/Watson/ThirdParty/TouchScript/Modules/TUIO/Libraries/TUIOsharp.dll</HintPath>
- </Reference>
- <Reference Include="HtmlAgilityPack">
- <HintPath>/Users/Jon/GitHub/MazeAI/MazeAI/Assets/Watson/ThirdParty/HtmlAgilityPack/HtmlAgilityPack.dll</HintPath>
  </Reference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

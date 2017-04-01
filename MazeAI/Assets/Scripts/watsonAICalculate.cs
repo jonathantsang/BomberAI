@@ -61,7 +61,11 @@ public class watsonAICalculate : MonoBehaviour {
 
 		// Distance from the player in x
 		Column columnDistanceX = new Column();
-		columnDanger.description = "Distance from player";
+		columnDanger.description = "Distance horizontally from player";
+		columnDanger.range = new ValueRange();
+		// Want to get close to player, but not too close
+		((ValueRange)columnDanger.range).high = 999;
+		((ValueRange)columnDanger.range).low = 3;
 		columnDanger.type = "numeric";
 		columnDanger.key = "distanceX";
 		columnDanger.full_name = "Distance Horizontal";
@@ -70,7 +74,11 @@ public class watsonAICalculate : MonoBehaviour {
 
 		// Distance from the player in y
 		Column columnDistanceY = new Column();
-		columnDistanceY.description = "Distance from player";
+		columnDistanceY.description = "Distance vertically from player";
+		columnDanger.range = new ValueRange();
+		// Want to get close to player, but not too close
+		((ValueRange)columnDanger.range).high = 999;
+		((ValueRange)columnDanger.range).low = 3;
 		columnDistanceY.type = "numeric";
 		columnDistanceY.key = "distanceX";
 		columnDistanceY.full_name = "Distance Horizontal";
@@ -208,16 +216,16 @@ public class watsonAICalculate : MonoBehaviour {
 		// Edit in the future based on player movement
 
 		// Left
-		(problemToSolve.options [0].values as TestDataValue).direction = 91;
+		(problemToSolve.options [0].values as TestDataValue).distanceX = 91;
 
 		// Up
-		//(problemToSolve.options [1].values as TestDataValue).direction = 91;
+		//(problemToSolve.options [1].values as TestDataValue).distanceX = 91;
 
 		// Right
-		//(problemToSolve.options [2].values as TestDataValue).direction = 91;
+		//(problemToSolve.options [2].values as TestDataValue).distanceX = 91;
 
 		// Down
-		// (problemToSolve.options [3].values as TestDataValue).direction = 91;
+		// (problemToSolve.options [3].values as TestDataValue).distanceX = 91;
 		// Bomb
 	}
 
