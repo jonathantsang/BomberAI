@@ -1,1 +1,0 @@
-curl -X POST --user "3a0cadaf-fd9a-409d-a1c8-2732953bd3af":"3iq0Qn2iDdzc" --header "Content-Type: application/json" --data @problem.json "https://gateway.watsonplatform.net/tradeoff-analytics/api/v1/dilemmas"
