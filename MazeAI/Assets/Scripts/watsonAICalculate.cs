@@ -117,8 +117,8 @@ public class watsonAICalculate : MonoBehaviour {
 		option1.name = "right";
 		option1.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option1.values as TestDataValue).distanceX = 0;
-		(option1.values as TestDataValue).distanceY = 0;
+		(option1.values as TestDataValue).distanceX = 700;
+		(option1.values as TestDataValue).distanceY = 700;
 		(option1.values as TestDataValue).danger = 0;
 
 		(option1.values as TestDataValue).action = "move";
@@ -130,8 +130,8 @@ public class watsonAICalculate : MonoBehaviour {
 		option2.name = "up";
 		option2.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option2.values as TestDataValue).distanceX = 0;
-		(option2.values as TestDataValue).distanceY = 0;
+		(option2.values as TestDataValue).distanceX = 700;
+		(option2.values as TestDataValue).distanceY = 700;
 		(option2.values as TestDataValue).danger = 0;
 
 		(option2.values as TestDataValue).action = "move";
@@ -143,8 +143,8 @@ public class watsonAICalculate : MonoBehaviour {
 		option3.name = "left";
 		option3.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option3.values as TestDataValue).distanceX = 0;
-		(option3.values as TestDataValue).distanceY = 0;
+		(option3.values as TestDataValue).distanceX = 700;
+		(option3.values as TestDataValue).distanceY = 700;
 		(option3.values as TestDataValue).danger = 0;
 
 		(option3.values as TestDataValue).action = "move";
@@ -156,8 +156,8 @@ public class watsonAICalculate : MonoBehaviour {
 		option4.name = "down";
 		option4.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option4.values as TestDataValue).distanceX = 0;
-		(option4.values as TestDataValue).distanceY = 0;
+		(option4.values as TestDataValue).distanceX = 700;
+		(option4.values as TestDataValue).distanceY = 700;
 		(option4.values as TestDataValue).danger = 0;
 
 		(option4.values as TestDataValue).action = "move";
@@ -169,8 +169,8 @@ public class watsonAICalculate : MonoBehaviour {
 		option5.name = "placebomb";
 		option5.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option5.values as TestDataValue).distanceX = 0;
-		(option5.values as TestDataValue).distanceY = 0;
+		(option5.values as TestDataValue).distanceX = 700;
+		(option5.values as TestDataValue).distanceY = 700;
 		(option5.values as TestDataValue).danger = 0;
 
 		(option5.values as TestDataValue).action = "bomb";
@@ -183,8 +183,8 @@ public class watsonAICalculate : MonoBehaviour {
 		option6.name = "waiting";
 		option6.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option6.values as TestDataValue).distanceX = 0;
-		(option6.values as TestDataValue).distanceY = 0;
+		(option6.values as TestDataValue).distanceX = 700;
+		(option6.values as TestDataValue).distanceY = 700;
 		(option6.values as TestDataValue).danger = 0;
 
 		(option6.values as TestDataValue).action = "nomove";
@@ -219,29 +219,34 @@ public class watsonAICalculate : MonoBehaviour {
 
 		Transform currTransform = gameObject.transform;
 
-		// right
+		// right 1
 		if(canMove(Vector2.right)){
-			(problemToSolve.options [0].values as TestDataValue).distanceX = currTransform.x + Vector2.right - player.transform.position;
-			(problemToSolve.options [0].values as TestDataValue).distanceY = currTransform.y - player.transform.position;
+			(problemToSolve.options [0].values as TestDataValue).distanceX = Mathf.Abs(currTransform.position.x + 1 - player.transform.position.x);
+			(problemToSolve.options [0].values as TestDataValue).distanceY = Mathf.Abs(currTransform.position.y - player.transform.position.y);
 		}
 
-		// up
+		// up 2
 		if(canMove(Vector2.up)){
-			(problemToSolve.options [1].values as TestDataValue).distanceX = currTransform.x + Vector2.right - player.transform.position;
-			(problemToSolve.options [1].values as TestDataValue).distanceY = currTransform.y - player.transform.position;
+			(problemToSolve.options [1].values as TestDataValue).distanceX = Mathf.Abs(currTransform.position.x - player.transform.position.x);
+			(problemToSolve.options [1].values as TestDataValue).distanceY = Mathf.Abs(currTransform.position.y + 1 - player.transform.position.y);
 		}
 
-		// left
+		// left 3
 		if(canMove(Vector2.left)){
-			(problemToSolve.options [2].values as TestDataValue).distanceX = currTransform.x + Vector2.right - player.transform.position;
-			(problemToSolve.options [2].values as TestDataValue).distanceY = currTransform.y - player.transform.position;
+			(problemToSolve.options [2].values as TestDataValue).distanceX = Mathf.Abs(currTransform.position.x -1 - player.transform.position.x);
+			(problemToSolve.options [2].values as TestDataValue).distanceY = Mathf.Abs(currTransform.position.y - player.transform.position.y);
 		}
 
-		// down
+		// down 4 
 		if(canMove(Vector2.down)){
-			(problemToSolve.options [3].values as TestDataValue).distanceX = currTransform.x + Vector2.right - player.transform.position;
-			(problemToSolve.options [3].values as TestDataValue).distanceY = currTransform.y - player.transform.position;
+			(problemToSolve.options [3].values as TestDataValue).distanceX = Mathf.Abs(currTransform.position.x - player.transform.position.x);
+			(problemToSolve.options [3].values as TestDataValue).distanceY = Mathf.Abs(currTransform.position.y - 1 - player.transform.position.y);
 		}
+		// bomb and wait 5 and 6
+		(problemToSolve.options [4].values as TestDataValue).distanceX = Mathf.Abs(currTransform.position.x - player.transform.position.x);
+		(problemToSolve.options [4].values as TestDataValue).distanceY = Mathf.Abs(currTransform.position.y - player.transform.position.y);
+		(problemToSolve.options [5].values as TestDataValue).distanceX = Mathf.Abs(currTransform.position.x - player.transform.position.x);
+		(problemToSolve.options [5].values as TestDataValue).distanceY = Mathf.Abs(currTransform.position.y - player.transform.position.x);
 	}
 
 	private bool canMove(Vector2 dirVector){
