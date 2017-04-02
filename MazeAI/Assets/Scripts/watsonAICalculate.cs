@@ -8,7 +8,7 @@ public class watsonAICalculate : MonoBehaviour {
 
 	[Header("Timer on Update Function")]
 	private float timeElapsed = 0f;
-	private float timeDuration = 2f;
+	private float timeDuration = 0.5f;
 
 	public float maxSpeed = 1.5f;
 
@@ -78,7 +78,7 @@ public class watsonAICalculate : MonoBehaviour {
 		columnWeight.type = "numeric";
 		columnWeight.key = "weight";
 		columnWeight.full_name = "Weight";
-		columnWeight.goal = "min";
+		columnWeight.goal = "max";
 		columnWeight.is_objective = true;
 
 		// Add each column that is a parameter
@@ -101,7 +101,7 @@ public class watsonAICalculate : MonoBehaviour {
 		(option1.values as TestDataValue).distanceX = -100;
 		(option1.values as TestDataValue).distanceY = -100;
 		(option1.values as TestDataValue).danger = 0;
-		(option1.values as TestDataValue).weight = 1;
+		(option1.values as TestDataValue).weight = 0;
 		listOption.Add(option1);
 
 		Option option2 = new Option();
@@ -112,7 +112,7 @@ public class watsonAICalculate : MonoBehaviour {
 		(option2.values as TestDataValue).distanceX = -100;
 		(option2.values as TestDataValue).distanceY = -100;
 		(option2.values as TestDataValue).danger = 0;
-		(option1.values as TestDataValue).weight = 0;
+		(option2.values as TestDataValue).weight = 0;
 		listOption.Add(option2);
 
 		Option option3 = new Option();
@@ -123,8 +123,7 @@ public class watsonAICalculate : MonoBehaviour {
 		(option3.values as TestDataValue).distanceX = -100;
 		(option3.values as TestDataValue).distanceY = -100;
 		(option3.values as TestDataValue).danger = 0;
-		(option1.values as TestDataValue).weight = 1;
-		(option1.values as TestDataValue).weight = 1;
+		(option3.values as TestDataValue).weight = 0;
 		listOption.Add(option3);
 
 		Option option4 = new Option();
@@ -135,7 +134,7 @@ public class watsonAICalculate : MonoBehaviour {
 		(option4.values as TestDataValue).distanceX = -100;
 		(option4.values as TestDataValue).distanceY = -100;
 		(option4.values as TestDataValue).danger = 0;
-		(option1.values as TestDataValue).weight = 0;
+		(option4.values as TestDataValue).weight = 0;
 		listOption.Add(option4);
 
 		Option option5 = new Option();
@@ -146,7 +145,7 @@ public class watsonAICalculate : MonoBehaviour {
 		(option5.values as TestDataValue).distanceX = -100;
 		(option5.values as TestDataValue).distanceY = -100;
 		(option5.values as TestDataValue).danger = 0;
-		(option1.values as TestDataValue).weight = 1;
+		(option5.values as TestDataValue).weight = 1;
 		listOption.Add(option5);
 
 		Option option6 = new Option();
@@ -157,7 +156,7 @@ public class watsonAICalculate : MonoBehaviour {
 		(option6.values as TestDataValue).distanceX = -100;
 		(option6.values as TestDataValue).distanceY = -100;
 		(option6.values as TestDataValue).danger = 0;
-		(option1.values as TestDataValue).weight = 1;
+		(option6.values as TestDataValue).weight = 1;
 		listOption.Add(option6);
 
 		problemToSolve.options = listOption.ToArray();
@@ -192,28 +191,28 @@ public class watsonAICalculate : MonoBehaviour {
 		Transform currTransform = gameObject.transform;
 
 		// right 1
-		if(canMove(Vector2.right)){
+		if(canMove(Vector2.left)){
 			Debug.Log ("can move right");
 			(problemToSolve.options [0].values as TestDataValue).distanceX = Mathf.Abs(currTransform.position.x + 1 - player.transform.position.x);
 			(problemToSolve.options [0].values as TestDataValue).distanceY = Mathf.Abs(currTransform.position.y - player.transform.position.y);
 		}
 
 		// up 2
-		if(canMove(Vector2.up)){
+		if(canMove(Vector2.down)){
 			Debug.Log ("can move up");
 			(problemToSolve.options [1].values as TestDataValue).distanceX = Mathf.Abs(currTransform.position.x - player.transform.position.x);
 			(problemToSolve.options [1].values as TestDataValue).distanceY = Mathf.Abs(currTransform.position.y + 1 - player.transform.position.y);
 		}
 
 		// left 3
-		if(canMove(Vector2.left)){
+		if(canMove(Vector2.right)){
 			Debug.Log ("can move left");
 			(problemToSolve.options [2].values as TestDataValue).distanceX = Mathf.Abs(currTransform.position.x -1 - player.transform.position.x);
 			(problemToSolve.options [2].values as TestDataValue).distanceY = Mathf.Abs(currTransform.position.y - player.transform.position.y);
 		}
 
 		// down 4 
-		if(canMove(Vector2.down)){
+		if(canMove(Vector2.up)){
 			Debug.Log ("can move down");
 			(problemToSolve.options [3].values as TestDataValue).distanceX = Mathf.Abs(currTransform.position.x - player.transform.position.x);
 			(problemToSolve.options [3].values as TestDataValue).distanceY = Mathf.Abs(currTransform.position.y - 1 - player.transform.position.y);
@@ -253,14 +252,14 @@ public class watsonAICalculate : MonoBehaviour {
 			int movex = 0;
 			int movey = 0;
 			// Right 
-			if (move == 1) {
-				movex = 1;
-			} else if (move == 2) {
-				movey = 1;
-			} else if (move == 3) {
+			if (move == 1) { //right
 				movex = -1;
-			} else if (move == 4) {
+			} else if (move == 2) { //up
 				movey = -1;
+			} else if (move == 3) { //left
+				movex = 1;
+			} else if (move == 4) { //down
+				movey = 1;
 				// Placing bomb, no movement
 			} else if (move == 5) {
 				Debug.Log ("bomb placed");

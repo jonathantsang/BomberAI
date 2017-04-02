@@ -1,9 +1,9 @@
+﻿
 Microsoft Visual Studio Solution File, Format Version 11.00
-# Visual Studio 2008
-
-Project("{47383B52-B4E6-08AC-5294-AE16E4E0D8CF}") = "MazeAI", "Assembly-CSharp.csproj", "{774F8F98-9B76-AA59-EB42-A7A46E833ED8}"
+# Visual Studio 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeAI", "Assembly-CSharp.csproj", "{774F8F98-9B76-AA59-EB42-A7A46E833ED8}"
 EndProject
-Project("{47383B52-B4E6-08AC-5294-AE16E4E0D8CF}") = "MazeAI", "Assembly-CSharp-Editor.csproj", "{EA176111-3981-C5A5-5352-99A1789E24F2}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MazeAI", "Assembly-CSharp-Editor.csproj", "{EA176111-3981-C5A5-5352-99A1789E24F2}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
