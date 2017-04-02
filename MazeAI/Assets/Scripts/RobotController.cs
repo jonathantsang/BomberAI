@@ -33,7 +33,6 @@ public class RobotController : MonoBehaviour {
 			Flip ();
 		}
 		float moveY = Input.GetAxis ("Vertical");//Gives us of one if we are moving via the arrow keys
-		Debug.Log(moveY);
 		//move our Players rigidbody
 
 		//set our speed
