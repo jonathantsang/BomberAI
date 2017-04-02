@@ -25,7 +25,9 @@ public class watsonAICalculate : MonoBehaviour {
 	private Problem problemToSolve = new Problem();
 	private List<Option> listOption;
 
-	private int pastDir = 0;
+	public GameObject bomb;
+
+	private int pastDir;
 
 	TradeoffAnalytics m_TradeoffAnalytics = new TradeoffAnalytics();
 
@@ -194,7 +196,7 @@ public class watsonAICalculate : MonoBehaviour {
 			Debug.Log (resp.resolution.solutions[i].solution_ref + " " + resp.resolution.solutions[i].status);
 			// Find the FRONT option from the array of solutions
 			if (resp.resolution.solutions [i].status == "FRONT") {
-				move = System.Int32.Parse(resp.resolution.solutions [i].solution_ref);
+				move = System.Int32.Parse (resp.resolution.solutions [i].solution_ref);
 			}
 		}
 		Debug.Log ("chosen: " + move);
@@ -271,6 +273,8 @@ public class watsonAICalculate : MonoBehaviour {
 			timeElapsed = 0f;
 			int movex = 0;
 			int movey = 0;
+
+
 			// Right 
 			if (move == 1) { //right
 				movex = -1;
@@ -287,7 +291,7 @@ public class watsonAICalculate : MonoBehaviour {
 			} else if (move == 6) {
 				Debug.Log ("wait");
 			}
-			pastDir = move;
+
 			rb2d.velocity = new Vector2 (movex , movey);
 		}
 	}
