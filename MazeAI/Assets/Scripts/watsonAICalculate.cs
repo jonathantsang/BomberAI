@@ -25,6 +25,8 @@ public class watsonAICalculate : MonoBehaviour {
 	private Problem problemToSolve = new Problem();
 	private List<Option> listOption;
 
+	private int pastDir = 0;
+
 	TradeoffAnalytics m_TradeoffAnalytics = new TradeoffAnalytics();
 
 	void Start () {
@@ -101,7 +103,10 @@ public class watsonAICalculate : MonoBehaviour {
 		(option1.values as TestDataValue).distanceX = -100;
 		(option1.values as TestDataValue).distanceY = -100;
 		(option1.values as TestDataValue).danger = 0;
-		(option1.values as TestDataValue).weight = 0;
+		(option1.values as TestDataValue).weight = 0.4;
+//		if (pastDir == 1) {
+//			(option1.values as TestDataValue).weight = 0.3;
+//		}
 		listOption.Add(option1);
 
 		Option option2 = new Option();
@@ -112,7 +117,10 @@ public class watsonAICalculate : MonoBehaviour {
 		(option2.values as TestDataValue).distanceX = -100;
 		(option2.values as TestDataValue).distanceY = -100;
 		(option2.values as TestDataValue).danger = 0;
-		(option2.values as TestDataValue).weight = 0;
+		(option2.values as TestDataValue).weight = 0.4;
+//		if (pastDir == 2) {
+//			(option2.values as TestDataValue).weight = 0.3;
+//		}
 		listOption.Add(option2);
 
 		Option option3 = new Option();
@@ -123,7 +131,10 @@ public class watsonAICalculate : MonoBehaviour {
 		(option3.values as TestDataValue).distanceX = -100;
 		(option3.values as TestDataValue).distanceY = -100;
 		(option3.values as TestDataValue).danger = 0;
-		(option3.values as TestDataValue).weight = 0;
+		(option3.values as TestDataValue).weight = 0.4;
+//		if (pastDir == 3) {
+//			(option3.values as TestDataValue).weight = 0.3;
+//		}
 		listOption.Add(option3);
 
 		Option option4 = new Option();
@@ -134,7 +145,10 @@ public class watsonAICalculate : MonoBehaviour {
 		(option4.values as TestDataValue).distanceX = -100;
 		(option4.values as TestDataValue).distanceY = -100;
 		(option4.values as TestDataValue).danger = 0;
-		(option4.values as TestDataValue).weight = 0;
+		(option4.values as TestDataValue).weight = 0.4;
+//		if (pastDir == 4) {
+//			(option4.values as TestDataValue).weight = 0.3;
+//		}
 		listOption.Add(option4);
 
 		Option option5 = new Option();
@@ -145,7 +159,10 @@ public class watsonAICalculate : MonoBehaviour {
 		(option5.values as TestDataValue).distanceX = -100;
 		(option5.values as TestDataValue).distanceY = -100;
 		(option5.values as TestDataValue).danger = 0;
-		(option5.values as TestDataValue).weight = 1;
+		(option5.values as TestDataValue).weight = 0.5;
+//		if (pastDir == 5) {
+//			(option5.values as TestDataValue).weight = 0.1;
+//		}
 		listOption.Add(option5);
 
 		Option option6 = new Option();
@@ -156,7 +173,10 @@ public class watsonAICalculate : MonoBehaviour {
 		(option6.values as TestDataValue).distanceX = -100;
 		(option6.values as TestDataValue).distanceY = -100;
 		(option6.values as TestDataValue).danger = 0;
-		(option6.values as TestDataValue).weight = 1;
+		(option6.values as TestDataValue).weight = 0.2;
+//		if (pastDir == 6) {
+//			(option6.values as TestDataValue).weight = 0.1;
+//		}
 		listOption.Add(option6);
 
 		problemToSolve.options = listOption.ToArray();
@@ -170,7 +190,7 @@ public class watsonAICalculate : MonoBehaviour {
 		}
 		Debug.Log("Response: " + resp);
 		// iterates in reverse order to have priority for moving over not moving. Workaround for categorical data not working.
-		for (int i = numOptions -1; i > -1; i--){
+		for (int i = numOptions-1; i >= 0; i--){
 			Debug.Log (resp.resolution.solutions[i].solution_ref + " " + resp.resolution.solutions[i].status);
 			// Find the FRONT option from the array of solutions
 			if (resp.resolution.solutions [i].status == "FRONT") {
@@ -267,6 +287,7 @@ public class watsonAICalculate : MonoBehaviour {
 			} else if (move == 6) {
 				Debug.Log ("wait");
 			}
+			pastDir = move;
 			rb2d.velocity = new Vector2 (movex , movey);
 		}
 	}
