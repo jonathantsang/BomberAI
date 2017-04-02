@@ -11,6 +11,7 @@ public class RobotController : MonoBehaviour {
 	private Transform myTransform;
 	//a value to represent our Animator
 	Animator anim;
+	Rigidbody2D rb;
 	//Prefabs
 	public GameObject bombPrefab; // SET FROM THE GUI!!!
 
@@ -19,12 +20,11 @@ public class RobotController : MonoBehaviour {
 		myTransform = transform;
 		//set anim to our animator
 		anim = GetComponent<Animator>();
+		rb = GetComponent<Rigidbody2D>();
 
 	}
 
-	// Update is called once per frame
-	void FixedUpdate () {
-
+	void Update(){
 		float moveX = Input.GetAxis ("Horizontal");//Gives us of one if we are moving via the arrow keys
 		//if we are moving left but not facing left flip, and vice versa
 		if (moveX < 0 && !facingLeft) {
@@ -33,14 +33,43 @@ public class RobotController : MonoBehaviour {
 			Flip ();
 		}
 		float moveY = Input.GetAxis ("Vertical");//Gives us of one if we are moving via the arrow keys
+		Debug.Log(moveY);
 		//move our Players rigidbody
-		GetComponent<Rigidbody2D>().velocity = new Vector2 (moveX * maxSpeed, moveY * maxSpeed);
+
 		//set our speed
 		anim.SetFloat ("Speed",Mathf.Sqrt (Mathf.Abs (moveX) * Mathf.Abs (moveX) + Mathf.Abs (moveY) * Mathf.Abs(moveY)));
-
+		if (Input.GetKeyDown("a"))
+		{
+			if (rb.position.x >= -4) {
+				rb.MovePosition (rb.position += Vector2.left);
+			}
+		}
+		if (Input.GetKeyDown("d"))
+		{
+			if (rb.position.x <= 4) {
+				rb.MovePosition (rb.position += Vector2.right);
+			}
+		}
+		if (Input.GetKeyDown("w"))
+		{
+			if (rb.position.y <= 4) {
+				rb.MovePosition (rb.position += Vector2.up);
+			}
+		}
+		if (Input.GetKeyDown("s"))
+		{
+			if (rb.position.y >= -4) {
+				rb.MovePosition (rb.position += Vector2.down);
+			}
+		}
 		if (Input.GetKeyDown(KeyCode.Space)) { //Drop bomb
 			DropBomb();
 		}
+	}
+
+	// Update is called once per frame
+	void FixedUpdate () {
+
 	}
 
 	void DropBomb() {

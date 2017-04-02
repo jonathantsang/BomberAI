@@ -58,7 +58,8 @@ public class watsonAICalculate : MonoBehaviour {
 		columnDistanceX.type = "numeric";
 		columnDistanceX.key = "distanceX";
 		columnDistanceX.full_name = "Distance Horizontal";
-		columnDistanceX.goal = "min";
+		// Want max, to close the most distance
+		columnDistanceX.goal = "max";
 		columnDistanceX.is_objective = true;
 
 		// Distance from the player in y
@@ -67,9 +68,11 @@ public class watsonAICalculate : MonoBehaviour {
 		columnDistanceY.type = "numeric";
 		columnDistanceY.key = "distanceY";
 		columnDistanceY.full_name = "Distance Vertical";
-		columnDistanceY.goal = "min";
+		// Want max, to close the most distance
+		columnDistanceY.goal = "max";
 		columnDistanceY.is_objective = true;
 
+		// Weight ways more on some elements to make it so AI doesn't get stuck
 		Column columnWeight = new Column();
 		columnWeight.description = "Weight Column to minimize";
 		columnWeight.type = "numeric";
@@ -82,7 +85,7 @@ public class watsonAICalculate : MonoBehaviour {
 		listColumn.Add(columnDanger);
 		listColumn.Add(columnDistanceX);
 		listColumn.Add(columnDistanceY);
-		// listColumn.Add(columnWeight);
+		listColumn.Add(columnWeight);
 		// Assuming the categorical data type is broken since it doesn't work in the example file either
 
 		problemToSolve.columns = listColumn.ToArray();
@@ -95,9 +98,10 @@ public class watsonAICalculate : MonoBehaviour {
 		option1.name = "right";
 		option1.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option1.values as TestDataValue).distanceX = 100;
-		(option1.values as TestDataValue).distanceY = 100;
+		(option1.values as TestDataValue).distanceX = -100;
+		(option1.values as TestDataValue).distanceY = -100;
 		(option1.values as TestDataValue).danger = 0;
+		(option1.values as TestDataValue).weight = 1;
 		listOption.Add(option1);
 
 		Option option2 = new Option();
@@ -105,9 +109,10 @@ public class watsonAICalculate : MonoBehaviour {
 		option2.name = "up";
 		option2.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option2.values as TestDataValue).distanceX = 100;
-		(option2.values as TestDataValue).distanceY = 100;
+		(option2.values as TestDataValue).distanceX = -100;
+		(option2.values as TestDataValue).distanceY = -100;
 		(option2.values as TestDataValue).danger = 0;
+		(option1.values as TestDataValue).weight = 0;
 		listOption.Add(option2);
 
 		Option option3 = new Option();
@@ -115,9 +120,11 @@ public class watsonAICalculate : MonoBehaviour {
 		option3.name = "left";
 		option3.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option3.values as TestDataValue).distanceX = 100;
-		(option3.values as TestDataValue).distanceY = 100;
+		(option3.values as TestDataValue).distanceX = -100;
+		(option3.values as TestDataValue).distanceY = -100;
 		(option3.values as TestDataValue).danger = 0;
+		(option1.values as TestDataValue).weight = 1;
+		(option1.values as TestDataValue).weight = 1;
 		listOption.Add(option3);
 
 		Option option4 = new Option();
@@ -125,9 +132,10 @@ public class watsonAICalculate : MonoBehaviour {
 		option4.name = "down";
 		option4.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option4.values as TestDataValue).distanceX = 100;
-		(option4.values as TestDataValue).distanceY = 100;
+		(option4.values as TestDataValue).distanceX = -100;
+		(option4.values as TestDataValue).distanceY = -100;
 		(option4.values as TestDataValue).danger = 0;
+		(option1.values as TestDataValue).weight = 0;
 		listOption.Add(option4);
 
 		Option option5 = new Option();
@@ -135,9 +143,10 @@ public class watsonAICalculate : MonoBehaviour {
 		option5.name = "placebomb";
 		option5.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option5.values as TestDataValue).distanceX = 100;
-		(option5.values as TestDataValue).distanceY = 100;
+		(option5.values as TestDataValue).distanceX = -100;
+		(option5.values as TestDataValue).distanceY = -100;
 		(option5.values as TestDataValue).danger = 0;
+		(option1.values as TestDataValue).weight = 1;
 		listOption.Add(option5);
 
 		Option option6 = new Option();
@@ -145,9 +154,10 @@ public class watsonAICalculate : MonoBehaviour {
 		option6.name = "waiting";
 		option6.values = new TestDataValue();
 		// These three will be edited at runtime
-		(option6.values as TestDataValue).distanceX = 100;
-		(option6.values as TestDataValue).distanceY = 100;
+		(option6.values as TestDataValue).distanceX = -100;
+		(option6.values as TestDataValue).distanceY = -100;
 		(option6.values as TestDataValue).danger = 0;
+		(option1.values as TestDataValue).weight = 1;
 		listOption.Add(option6);
 
 		problemToSolve.options = listOption.ToArray();
@@ -258,8 +268,7 @@ public class watsonAICalculate : MonoBehaviour {
 			} else if (move == 6) {
 				Debug.Log ("wait");
 			}
-
-			rb2d.velocity = new Vector2 (movex, movey);
+			rb2d.velocity = new Vector2 (movex , movey);
 		}
 	}
 
